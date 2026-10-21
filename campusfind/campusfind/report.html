@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Report an Item – CampusFind</title>
+  <meta name="description" content="Report a lost or found item on campus.">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body data-page="report">
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo"><span class="logo-mark" aria-hidden="true">🔎</span>Campus<b>Find</b></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse.html">Browse</a></li>
+        <li><a href="report.html" class="active" aria-current="page">Report</a></li>
+        <li><a href="help.html">Help</a></li>
+      </ul>
+      <div style="display:flex;gap:.5rem;align-items:center">
+        <button class="theme-toggle" id="themeBtn" type="button" aria-label="Toggle dark mode">🌙</button>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <span class="blob b2"></span><span class="blob b1"></span>
+      <div class="container">
+        <h1>Report an <span class="grad-text">item</span></h1>
+        <p>The more detail you give, the faster it finds its way home.</p>
+      </div>
+    </section>
+
+    <section class="block" style="padding-top:1rem">
+      <div class="container form-layout">
+
+        <aside class="panel reveal">
+          <h2>Tips for a good report</h2>
+          <ul class="tips">
+            <li><span class="i" aria-hidden="true">🎨</span><span>Mention colour, brand and any unique marks, stickers or scratches.</span></li>
+            <li><span class="i" aria-hidden="true">📍</span><span>Say where and roughly when it happened.</span></li>
+            <li><span class="i" aria-hidden="true">🔒</span><span>Don't post ID, card or account numbers. Keep a detail only the owner would know.</span></li>
+            <li><span class="i" aria-hidden="true">✅</span><span>Mark the item as returned once it's sorted, so others stop searching.</span></li>
+          </ul>
+        </aside>
+
+        <div class="panel reveal" style="--d:.1s">
+          <form id="reportForm" novalidate>
+            <h2 id="formTitle" style="margin-bottom:1.2rem">Report a lost item</h2>
+
+            <div class="type-toggle" role="radiogroup" aria-label="Report type">
+              <label>
+                <input type="radio" name="type" value="lost" checked>
+                <span class="type-opt lost-opt"><span aria-hidden="true">😟</span>I lost something<small>Help me find it</small></span>
+              </label>
+              <label>
+                <input type="radio" name="type" value="found">
+                <span class="type-opt found-opt"><span aria-hidden="true">😊</span>I found something<small>Help return it</small></span>
+              </label>
+            </div>
+
+            <div class="field">
+              <label for="title">What is it?</label>
+              <input id="title" name="title" type="text" maxlength="60" placeholder="e.g. Black backpack, Casio calculator">
+              <span class="err">Please enter at least 3 characters.</span>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                  <option value="">Choose…</option>
+                  <option>Electronics</option>
+                  <option>Books &amp; Notes</option>
+                  <option>ID &amp; Cards</option>
+                  <option>Keys</option>
+                  <option>Bags</option>
+                  <option>Clothing</option>
+                  <option>Wallet</option>
+                  <option>Other</option>
+                </select>
+                <span class="err">Please pick a category.</span>
+              </div>
+              <div class="field">
+                <label for="date" id="dateLabel">Date lost</label>
+                <input id="date" name="date" type="date">
+                <span class="err">Choose a date that is not in the future.</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="location" id="locLabel">Where did you lose it?</label>
+              <input id="location" name="location" type="text" maxlength="60" placeholder="e.g. Library, 2nd floor">
+              <span class="err">Please tell us the place.</span>
+            </div>
+
+            <div class="field">
+              <label for="desc">Description</label>
+              <textarea id="desc" name="desc" maxlength="300" placeholder="Colour, size, brand, what's inside, marks that identify it…"></textarea>
+              <span class="err">Please write at least 10 characters.</span>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label for="contact">Email or phone</label>
+                <input id="contact" name="contact" type="text" placeholder="you@email.com or 0300 0000000" autocomplete="off">
+                <span class="err">Enter a valid email or phone number.</span>
+              </div>
+              <div class="field">
+                <label for="reporter">Your name <small style="color:var(--muted)">(optional)</small></label>
+                <input id="reporter" name="reporter" type="text" maxlength="40" autocomplete="name">
+                <span class="err"></span>
+              </div>
+            </div>
+            <p class="meta" style="margin:-.4rem 0 1.2rem">Your contact is visible to people who open your listing.</p>
+
+            <button class="btn btn-block" type="submit">Submit report</button>
+          </form>
+
+          <div class="success" id="success" role="status">
+            <svg class="check" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="41"/><path d="M30 52 l14 14 l27 -30"/></svg>
+            <h2>Report submitted!</h2>
+            <p style="color:var(--muted)">Your listing is now live on the Browse page.</p>
+            <div class="ref" id="refCode"></div>
+            <div class="modal-actions" style="justify-content:center">
+              <a class="btn" href="browse.html">View listings</a>
+              <button class="btn btn-outline" id="again" type="button">Report another</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <a href="index.html" class="logo"><span class="logo-mark" aria-hidden="true">🔎</span>Campus<b>Find</b></a>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="browse.html">Browse</a><a href="report.html">Report</a><a href="help.html">Help</a>
+      </nav>
+      <p>© <span id="year">2026</span> CampusFind</p>
+    </div>
+  </footer>
+
+</body>
+</html>

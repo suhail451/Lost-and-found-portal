@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browse Items – CampusFind</title>
+  <meta name="description" content="Search lost and found items on campus.">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body data-page="browse">
+
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo"><span class="logo-mark" aria-hidden="true">🔎</span>Campus<b>Find</b></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="browse.html" class="active" aria-current="page">Browse</a></li>
+        <li><a href="report.html">Report</a></li>
+        <li><a href="help.html">Help</a></li>
+      </ul>
+      <div style="display:flex;gap:.5rem;align-items:center">
+        <button class="theme-toggle" id="themeBtn" type="button" aria-label="Toggle dark mode">🌙</button>
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-banner">
+      <span class="blob b1"></span><span class="blob b3"></span>
+      <div class="container">
+        <h1>Browse <span class="grad-text">lost &amp; found</span></h1>
+        <p>Search by name, place or category. Click any card to see details and get in touch.</p>
+      </div>
+    </section>
+
+    <section class="block" style="padding-top:1rem">
+      <div class="container">
+        <div class="controls">
+          <div class="tabs" role="group" aria-label="Item type">
+            <button class="tab active" type="button" data-tab="all" aria-pressed="true">All</button>
+            <button class="tab" type="button" data-tab="lost" aria-pressed="false">Lost</button>
+            <button class="tab" type="button" data-tab="found" aria-pressed="false">Found</button>
+          </div>
+          <input id="q" type="search" placeholder="Search by name, place or detail…" aria-label="Search items">
+          <select id="cat" aria-label="Category">
+            <option value="all">All categories</option>
+            <option>Electronics</option>
+            <option>Books &amp; Notes</option>
+            <option>ID &amp; Cards</option>
+            <option>Keys</option>
+            <option>Bags</option>
+            <option>Clothing</option>
+            <option>Wallet</option>
+            <option>Other</option>
+          </select>
+          <select id="sort" aria-label="Sort order">
+            <option value="new">Newest first</option>
+            <option value="old">Oldest first</option>
+          </select>
+        </div>
+
+        <p class="result-count" id="count" aria-live="polite"></p>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Details dialog -->
+  <div class="modal-backdrop" id="modal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close details">✕</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <a href="index.html" class="logo"><span class="logo-mark" aria-hidden="true">🔎</span>Campus<b>Find</b></a>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="browse.html">Browse</a><a href="report.html">Report</a><a href="help.html">Help</a>
+      </nav>
+      <p>© <span id="year">2026</span> CampusFind</p>
+    </div>
+  </footer>
+
+</body>
+</html>
